@@ -13,9 +13,9 @@ class UserService {
         if(candidate){
             return res.status(401).json({message: `Такой пользователь уже существует`})
         }
-        const hashPassword = await bcrypt.hash(password, 10);
+        const hashPassword = await bcrypt.hash(password, saltRounds);
         const activationLink = uuid.v4()
-        const user = await UserModel.create({name: name, email: email,password: hashPassword, activationLink: activationLink})
+        const user = await UserModel.create({name: name, email: email, password: hashPassword, activationLink: activationLink})
         await mailService.sendActivationMail(email, activationLink)
         const userDto = new UserDto(user)
         const tokens = tokenService.generateTokens({...userDto})
