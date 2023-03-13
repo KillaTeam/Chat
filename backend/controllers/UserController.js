@@ -48,7 +48,7 @@ class UserController {
             const {link} = req.params;
             if(!link) return res.status(404)
             await userService.activateLink(link)
-            return res.redirect('https://www.google.com/')
+            return res.redirect(process.env.URL_FOR_REDIRECT_AFTER_ACRIVATION)
         } catch (err) {
             next(err);
         }
