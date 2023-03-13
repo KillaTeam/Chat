@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const router = require('./router/index')
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const errorMiddleware = require('./middleware/error-middleware')
+
 
 const app = express();
 
@@ -20,6 +22,14 @@ app.use(cors())
 app.use(morgan('dev'))
 
 app.use(router)
+app.use(errorMiddleware)
+
+app.use('*', (req, res) => {
+    return res.status(404).json({
+      success: false,
+      message: 'API endpoint doesnt exist'
+    })
+  });
 
 const start = async () => {
     try {
