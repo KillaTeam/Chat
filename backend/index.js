@@ -4,13 +4,9 @@ const cors = require('cors');
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser');
 const router = require('./router/index')
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const errorMiddleware = require('./middleware/error-middleware')
-
-// const server = require('http').createServer();
-// const socketio = require('socket.io');
-
 
 const app = express();
 
@@ -28,7 +24,6 @@ app.use(cors(
     }
 ))
 app.use(morgan('dev'))
-
 app.use(router)
 app.use(errorMiddleware)
 
