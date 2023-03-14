@@ -8,6 +8,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const errorMiddleware = require('./middleware/error-middleware')
 
+// const server = require('http').createServer();
+// const socketio = require('socket.io');
+
 
 const app = express();
 
@@ -42,7 +45,7 @@ const start = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-        app.listen(PORT || EXT_PORT, console.log(`Server started`));
+        app.listen(PORT || EXT_PORT, console.log(`Server started: \n - PORT: ${PORT}`))
     } catch (err) {
         console.log(err);
     }

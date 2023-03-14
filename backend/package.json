@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "supervisor index.js"
   },
   "repository": {
     "type": "git",
@@ -27,14 +27,16 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-validator": "^6.15.0",
+    "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.1",
     "morgan": "^1.10.0",
     "nodemailer": "^6.9.1",
+    "socket.io": "^4.6.1",
     "uuid": "^9.0.0",
     "xhr2": "^0.2.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.21"
+    "supervisor": "^0.12.0"
   }
 }
