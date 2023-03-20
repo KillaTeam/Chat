@@ -7,9 +7,11 @@ const router = require('./router/index')
 // const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const errorMiddleware = require('./middleware/error-middleware')
+const http = require('http')
+const ws = require('./ws')
 
 const app = express();
-
+const server = http.createServer(app)
 
 const PORT = process.env.PORT
 const EXT_PORT = process.env.EXT_PORT
@@ -40,7 +42,11 @@ const start = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-        app.listen(PORT || EXT_PORT, console.log(`Server started: \n - PORT: ${PORT}`))
+        ws(server)
+        server.listen(PORT, () => {
+            console.log(`Server has been started on PORT: ${PORT}`)
+        })
+        // app.listen(PORT || EXT_PORT, console.log(`Server started: \n - PORT: ${PORT}`))
     } catch (err) {
         console.log(err);
     }
